@@ -34,7 +34,7 @@ const Details = ({ onNext, onPrev }: componentProp) => {
 
     //set up form state
     const {
-        formState: { errors, isValid },
+        formState: { errors },
         reset,
         handleSubmit,
         getValues,
@@ -91,11 +91,11 @@ const Details = ({ onNext, onPrev }: componentProp) => {
                         onImageUpload={handleImageUpload}
                         value={formData.imageUrl}
                     />
-                    {errors.imageUrl && (
+                    {/* {errors.imageUrl && (
                         <span id="imageUrlError" className={styles.error}>
                             {errors.imageUrl.message}
                         </span>
-                    )}
+                    )} */}
                 </div>
                 <span className="hr"></span>
                 <>
@@ -113,11 +113,11 @@ const Details = ({ onNext, onPrev }: componentProp) => {
                             aria-invalid={!!errors.name}
                             aria-describedby="nameError"
                         />
-                        {errors.name && (
+                        {/* {errors.name && (
                             <span id="nameError" className={styles.error}>
                                 {errors.name.message}
                             </span>
-                        )}
+                        )} */}
                     </div>
                     <div className='mb-[10px] flex flex-col'>
                         <label className='text-white text-[12px]' htmlFor="email">Enter your email*</label>
@@ -133,11 +133,11 @@ const Details = ({ onNext, onPrev }: componentProp) => {
                             aria-invalid={!!errors.email}
                             aria-describedby="emailError"
                         />
-                        {errors.email && (
+                        {/* {errors.email && (
                             <span id="emailError" className={styles.error}>
                                 {errors.email.message}
                             </span>
-                        )}
+                        )} */}
                     </div>
                     <div className='mb-[10px] flex flex-col'>
                         <label className='text-white text-[12px]' htmlFor="request">Special Request?</label>
