@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import Upload from '../uploadImage/Upload';
 import React, { useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import styles from '../../../../styles/Home.module.css'
 
 //component prop
 interface componentProp {
