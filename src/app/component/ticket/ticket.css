@@ -1,0 +1,281 @@
+
+
+.ticket {
+  display: flex;
+  /* flex-direction: column; */
+  font-family: Roboto;
+  margin: 16px;
+  border: 1px solid #24A0B5;
+  position: relative;
+  height: 400px;
+  /* transform: rotate(90deg); Rotate the ticket by -90 degrees */
+  /* transform-origin: left center; */
+}
+
+/* .ticket::before {
+  content: '';
+  width: 32px;
+  height: 32px;
+  background-color: #041E23;
+  border: 1px solid #24A0B5;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: -18px;
+  top: 50%;
+  margin-top: -16px;
+  border-radius: 50%;
+}
+
+.ticket::after {
+  content: '';
+  width: 32px;
+  height: 32px;
+  background-color: #041E23;
+  border: 1px solid #24A0B5;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  position: absolute;
+  transform: rotate(135deg);
+  right: -18px;
+  top: 50%;
+  margin-top: -16px;
+  border-radius: 50%;
+} */
+/* .ticket-card {
+  background-color: #202020;
+  color: #fff;
+  padding: 20px;
+  border-radius: 20px; 
+  position: relative;
+} */
+
+/* Top-Left Curve */
+.ticket::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 40px;
+  height: 40px;
+  background-color: #041E23;
+  border: 1px solid #24A0B5;
+  border-radius: 50%;
+}
+
+/* Top-Right Curve */
+.ticket::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  background-color: #041E23;
+  border: 1px solid #24A0B5;
+  border-radius: 50%;
+}
+
+/* Bottom-Left Curve */
+.ticket::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  width: 40px;
+  height: 40px;
+  background-color: #041E23;
+   border: 1px solid #24A0B5;
+  border-radius: 50%;
+}
+
+/* Bottom-Right Curve */
+.ticket::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  background-color: #041E23;
+  border-radius: 50%;
+}
+
+/* ... rest of the CSS ... */
+
+.ticket--start {
+  position: relative;
+}
+
+.ticket--start::before {
+  content: '';
+  width: 32px;
+  height: 32px;
+  background-color: #041E23;
+  border: 1px solid #24A0B5;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: -18px;
+  top: -2px;
+  margin-top: -16px;
+  border-radius: 50%;
+}
+
+.ticket--start::after {
+  content: '';
+  width: 32px;
+  height: 32px;
+  background-color: #041E23;
+  border: 1px solid #24A0B5;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: -18px;
+  top: 100%;
+  margin-top: -16px;
+  border-radius: 50%;
+}
+
+.ticket--start > img {
+  display: block;
+  padding: 24px;
+  height: 270px;
+}
+
+.ticket--start {
+  border-right: 1px dashed #24A0B5;
+}
+
+.ticket--center {
+  padding: 24px;
+  flex: 1;
+}
+
+.ticket--center--row {
+  display: flex;
+}
+
+.ticket--center--row:not(:last-child) {
+  padding-bottom: 48px;
+}
+
+.ticket--center--row:first-child span {
+  color: #4872b0;
+  text-transform: uppercase;
+  line-height: 24px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ticket--center--row:first-child strong {
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.ticket--center--col {
+  display: flex;
+  flex: 1;
+  width: 50%;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.ticket--center--col:not(:last-child) {
+  padding-right: 16px;
+}
+
+.ticket--end {
+  padding: 24px;
+  background-color: #4872b0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ticket--end::before {
+  content: '';
+  width: 32px;
+  height: 32px;
+  background-color: #041E23;
+  border: 1px solid #24A0B5;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  position: absolute;
+  transform: rotate(-45deg);
+  right: -18px;
+  top: -2px;
+  margin-top: -16px;
+  border-radius: 50%;
+}
+
+.ticket--end::after {
+  content: '';
+  width: 32px;
+  height: 32px;
+  background-color: #041E23;
+  border: 1px solid #24A0B5;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  position: absolute;
+  transform: rotate(-45deg);
+  right: -18px;
+  top: 100%;
+  margin-top: -16px;
+  border-radius: 50%;
+}
+
+.ticket--end > div:first-child {
+  flex: 1;
+}
+
+.ticket--end > div:first-child > img {
+  width: 128px;
+  padding: 4px;
+  background-color: #fff;
+}
+
+.ticket--end > div:last-child > img {
+  display: block;
+  margin: 0 auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.64;
+}
+
+.ticket--info--title {
+  text-transform: uppercase;
+  color: #757575;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticket--info--subtitle {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #4872b0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticket--info--content {
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
