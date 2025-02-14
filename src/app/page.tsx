@@ -50,6 +50,13 @@ const Wrapper = () => {
     );
   }, [currentStep]);
 
+  const handleReset = () => {
+    // setFormData({});
+    localStorage.removeItem("formData");
+    localStorage.removeItem("ticketData");
+    setCurrentStep(1);
+  }
+
   //dynamically set title for steps
   const currentStepTitle = steps.find((step) => step.id === currentStep)?.name || '';
 
@@ -71,7 +78,7 @@ const Wrapper = () => {
           <section className={`${currentStep === 3 ? "border-none bg-transparent" : "md:border border-1 border-[#0E464F] md:bg-[#052228]"}  rounded-[25px] md:p-[20px]`}>
             {currentStep === 1 && <TicketSelect onNext={handleNext} onPrev={handlePrev} />}
             {currentStep === 2 && <Details onNext={handleNext} onPrev={handlePrev} />}
-            {currentStep === 3 && <Ticket onPrev={handlePrev} />}
+            {currentStep === 3 && <Ticket onReset={handleReset} />}
           </section>
         </div>
       </main>

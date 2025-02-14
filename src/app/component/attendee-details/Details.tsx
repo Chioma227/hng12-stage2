@@ -1,45 +1,31 @@
 'use client';
 
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
 import Upload from '../uploadImage/Upload';
 import React, { useState, useEffect } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 //component prop
 interface componentProp {
-    onNext?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    onNext?: () => void;
     onPrev?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-//yup schema
-const schema = yup.object().shape({
-    name: yup.string().required('Name is required'),
-    email: yup.string().email('Invalid email address').required('Email is required'),
-    imageUrl: yup.string().required('Profile photo is required'),
-});
+interface FormErrors {
+    name?: string;
+    email?: string;
+    imageUrl?: string;
+}
 
 const Details = ({ onNext, onPrev }: componentProp) => {
     //states
+    const [errors, setErrors] = useState<FormErrors>({});
     const [formData, setFormData] = useState(() => {
         const savedData = localStorage.getItem('formData');
         return savedData ? JSON.parse(savedData) : {
-          name: '',
-          email: '',
-          request: '',
-          imageUrl: '',
+            name: '',
+            email: '',
+            request: '',
+            imageUrl: '',
         };
-      });
-
-    //set up form state
-    const {
-        formState: { errors },
-        reset,
-        handleSubmit,
-        getValues,
-    } = useForm({
-        resolver: yupResolver(schema),
-        defaultValues: formData,
     });
 
     //save data to localStorage
@@ -52,7 +38,6 @@ const Details = ({ onNext, onPrev }: componentProp) => {
         const savedData = localStorage.getItem('formData');
         if (savedData) {
             setFormData(JSON.parse(savedData));
-            reset(JSON.parse(savedData));
         }
     }, []);
 
@@ -72,33 +57,48 @@ const Details = ({ onNext, onPrev }: componentProp) => {
         });
     };
 
-    useEffect(() => {
-        localStorage.setItem(
-            'formData',
-            JSON.stringify({ ...getValues() })
-        );
-    }, [getValues]);
+    const validateForm = (): boolean => {
+        const newErrors: FormErrors = {};
 
-    const onSubmit = () => {
-        console.log('Form submitted:');
+        if (!formData.name.trim()) {
+            newErrors.name = 'Name is required';
+        }
+
+        if (!formData.email.trim()) {
+            newErrors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = 'Invalid email format';
+        }
+
+        if (!formData.imageUrl.trim()) {
+            newErrors.imageUrl = 'Profile photo is required';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    // Handle Form Submission
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (validateForm()) {
+            onNext?.();
+        }
     };
     return (
         <main>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[25px]">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-[20px]">
                 <div>
                     <Upload
                         onImageUpload={handleImageUpload}
                         value={formData.imageUrl}
                     />
-                    {/* {errors.imageUrl && (
-                        <span id="imageUrlError" className={styles.error}>
-                            {errors.imageUrl.message}
-                        </span>
-                    )} */}
+                    {errors.imageUrl && <span className="text-red-500">{errors.imageUrl}</span>}
                 </div>
                 <span className="hr"></span>
-                <>
-                    <div className='mb-[10px] flex flex-col'>
+                <section className=' space-y-[20px]'>
+                    <div className='flex flex-col'>
                         <label className='text-white text-[12px]' htmlFor="name">Enter your Name</label>
                         <input
                             type="text"
@@ -112,13 +112,9 @@ const Details = ({ onNext, onPrev }: componentProp) => {
                             aria-invalid={!!errors.name}
                             aria-describedby="nameError"
                         />
-                        {/* {errors.name && (
-                            <span id="nameError" className={styles.error}>
-                                {errors.name.message}
-                            </span>
-                        )} */}
+                        {errors.name && <span className="text-red-500">{errors.name}</span>}
                     </div>
-                    <div className='mb-[10px] flex flex-col'>
+                    <div className='flex flex-col'>
                         <label className='text-white text-[12px]' htmlFor="email">Enter your email*</label>
                         <input
                             type="email"
@@ -132,13 +128,9 @@ const Details = ({ onNext, onPrev }: componentProp) => {
                             aria-invalid={!!errors.email}
                             aria-describedby="emailError"
                         />
-                        {/* {errors.email && (
-                            <span id="emailError" className={styles.error}>
-                                {errors.email.message}
-                            </span>
-                        )} */}
+                        {errors.email && <span className="text-red-500">{errors.email}</span>}
                     </div>
-                    <div className='mb-[10px] flex flex-col'>
+                    <div className='flex flex-col'>
                         <label className='text-white text-[12px]' htmlFor="request">Special Request?</label>
                         <textarea
                             id="request"
@@ -151,10 +143,10 @@ const Details = ({ onNext, onPrev }: componentProp) => {
                             rows={3}
                         />
                     </div>
-                </>
+                </section>
                 <section className="flex md:flex-row flex-col-reverse items-center justify-between gap-[10px]">
                     <button onClick={onPrev} className="w-full border border-1 border-[#24A0B5] text-[#24A0B5] rounded-md py-[8px]">Back</button>
-                    <button type='submit' onClick={onNext} className="w-full disabled:cursor-not-allowed disabled:bg-[#249fb563] disabled:text-[#a09f9f91] bg-[#24A0B5] text-white rounded-md py-[8px]">Get My Free Ticket</button>
+                    <button type='submit' className="w-full disabled:cursor-not-allowed disabled:bg-[#249fb563] disabled:text-[#a09f9f91] bg-[#24A0B5] text-white rounded-md py-[8px]">Get My Free Ticket</button>
                 </section>
             </form>
         </main>

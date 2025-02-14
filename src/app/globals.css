@@ -19,6 +19,14 @@ body {
   background-color: #0e464f;
   background-image: linear-gradient(166deg, #0e464f 0%, #02191d 48%);
 }
+.bar-code{
+  background: radial-gradient(#187482, #052428);
+}
+#ticket-card{
+  background-color: #072C31;
+  background-image: linear-gradient(180deg, #0e464f 0%, #072C31 48%);
+
+}
 .hr{
   border: 2px solid #07373F;
   width: 100%;

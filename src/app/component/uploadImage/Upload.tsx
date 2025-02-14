@@ -11,9 +11,11 @@ interface ImageUploadProps {
 }
 
 const Upload = ({ onImageUpload, value }: ImageUploadProps) => {
+    //states
     const [preview, setPreview] = useState<string | null>(value || null)
     const [isUploading, setIsUploading] = useState(false)
 
+    //handle drag&drop
     const onDrop = useCallback(
         async (acceptedFiles: File[]) => {
             const file = acceptedFiles[0]
@@ -62,13 +64,13 @@ const Upload = ({ onImageUpload, value }: ImageUploadProps) => {
     })
 
     return (
-        <section className="border border-1 text-[#FAFAFA] border-[#0E464F] rounded-[15px] bg-[#04191e43] md:p-[24px] p-[15px]">
+        <section className="border border-1 h-fit text-[#FAFAFA] border-[#0E464F] rounded-[15px] bg-[#04191e43] md:p-[24px] p-[15px]">
             <p className='text-left md:text-base text-[14px]'>Upload Profile Photo</p>
-            <div className="py-[30px]">
-                <div className="relative h-[150px] bg-[#041316df]">
+            <div className="md:py-[30px]">
+                <div className="relative md:h-[150px] bg-[#041316df]">
                     <div
                         {...getRootProps()}
-                        className='bg-[#0E464F] md:absolute left-[130px] flex items-center justify-center text-center md:top-[-15px] border-2 border-[#24A0B5] rounded-[20px] md:w-[45%] h-[190px]'
+                        className='bg-[#0E464F] md:mt-0 mt-[10px] md:absolute left-[130px] flex items-center justify-center text-center md:top-[-15px] top-0 border-2 border-[#24A0B5] rounded-[20px] md:w-[45%] h-[190px]'
                     >
                         <input {...getInputProps()} />
                         <div className="w-full h-full">
@@ -77,13 +79,13 @@ const Upload = ({ onImageUpload, value }: ImageUploadProps) => {
                                     <Image
                                         src={preview || ""}
                                         alt="Preview"
-                                        className="w-full h-full object-cover rounded-[20px]"
+                                        className={`w-full h-full object-cover rounded-[20px] ${isUploading ? "opacity-15" : ''}`}
                                         width={100}
                                         height={100}
                                     />
                                 </div>
                             ) : (
-                                <div>
+                                <div className="flex items-center justify-center h-full">
                                     {
                                         isDragActive ?
                                             <AiOutlineCloudUpload size={45} className='transition duration-300 ease-in-out scale-110' /> :
