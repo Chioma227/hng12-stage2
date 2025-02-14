@@ -65,10 +65,9 @@ const Ticket = ({ onReset }: componentProp) => {
                 <h3 className='font-bold text-[25px]'>Your Ticket is Booked! </h3>
                 <p className='mt-[10px]'>Check your email for a copy or you can <span>download</span></p>
             </div>
-            <div className="w-fit h-full mt-[50px] relative overflow-hidden">
+            <div id="ticket-card" className="w-fit h-full mt-[50px] relative overflow-hidden">
                 <div
-                    id="ticket-card"
-                    className="relative border-b-0 z-30 border-[#24A0B5] border-2 md:p-[20px] p-[15px] bg-[#072C31] text-white"
+                    className="ticket-inner relative border-b-0 z-30 border-[#24A0B5] border-2 md:p-[20px] p-[15px] bg-[#072C31] text-white"
                 >
                     <div className="w-8 h-8 absolute rounded-full bg-[#041E23] border-l-2  border-b-2 border-[#24A0B5] -top-4 -right-4"></div>
                     <div className="w-8 h-8 absolute rounded-full bg-[#041E23] border-l-2  border-b-2 border-[#24A0B5] -top-4 -left-4"></div>
@@ -81,14 +80,14 @@ const Ticket = ({ onReset }: componentProp) => {
                                 <h2 className="md:text-[25px] text-[27px] leading-10 font-extrabold">Techember Fest &apos;&apos;25</h2>
                                 <div className="text-[14px] text-[#cbcaca] md:mt-0 mt-[14px] flex sm:flex-row flex-col gap-1 text-center"><span>📍 Location: <span className="font-bold text-white">Your Homes</span> </span> <span>📅 March 15, 2025 | 7:00 PM</span></div>
                             </div>
-                            <div className='flex border-3 border-[#23bad4] mt-[30px] w-[150px] h-[150px] items-center justify-center'>
+                            <div className='flex mt-[30px] w-[150px] h-[150px] items-center justify-center'>
                                 {formData.imageUrl ? (
                                     <Image
                                         src={formData.imageUrl}
                                         alt="user"
                                         width={120}
                                         height={120}
-                                        className="rounded-[10px] border-3 border-[#2ec4de] w-full h-full object-cover"
+                                        className="rounded-[10px] border-[4px] border-[#28a1b7aa] w-full h-full object-cover"
                                     />
                                 ) : (
                                     <Image

@@ -22,10 +22,9 @@ body {
 .bar-code{
   background: radial-gradient(#187482, #052428);
 }
-#ticket-card{
+.ticket-inner{
   background-color: #072C31;
   background-image: linear-gradient(180deg, #0e464f 0%, #072C31 48%);
-
 }
 .hr{
   border: 2px solid #07373F;
