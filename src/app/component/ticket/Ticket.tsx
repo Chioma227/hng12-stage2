@@ -43,7 +43,7 @@ const Ticket = ({ onReset }: componentProp) => {
             const element = document.getElementById('ticket') as HTMLElement;
 
             if (element) {
-                const canvas = await html2canvas(element);
+                const canvas = await html2canvas(element, {backgroundColor: "#09505c",});
                 const dataURL = canvas.toDataURL('image/png');
 
                 const link = document.createElement('a');
