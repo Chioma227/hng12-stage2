@@ -4,7 +4,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 const Header = () => {
     return (
-        <header className="flex mb-[30px] items-center justify-between px-[10px] border-2 border-[#0E464F] rounded-[15px] text-white h-[60px]">
+        <header className="flex fixed backdrop-blur-sm z-[1000] w-[97%] mb-[30px] items-center justify-between px-[10px] border-2 border-[#0E464F] rounded-[15px] text-white h-[60px]">
             <div>
                 <Image src='/logo.svg' alt="logo" width={70} height={50} />
             </div>

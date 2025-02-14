@@ -64,15 +64,15 @@ const TicketSelect = ({ onNext, onPrev }: componentProp) => {
     ]
     return (
         <main className="flex flex-col gap-[25px]">
-            <section className="background border border-1 text-center text-[#FAFAFA] border-[#0E464F] rounded-[15px] p-[10px] flex items-center justify-center flex-col">
-                <h2 className="md:text-[25px] text-[21px] font-extrabold">Techember Fest &apos;&apos;25</h2>
-                <p className="text-[13px] my-[8px]">Join us for an unforgettable experience at <br /> [Event Name]! Secure your spot now.</p>
-                <p className="text-[14px] md:mt-0 mt-[14px]">📍 [Event Location] || March 15, 2025 | 7:00 PM</p>
+            <section className="background border border-1 text-center text-[#FAFAFA] border-[#0E464F] rounded-[15px] px-[10px] py-[20px] flex items-center justify-center flex-col">
+                <h2 className="md:text-[25px] text-[27px] leading-10 font-extrabold">Techember Fest &apos;&apos;25</h2>
+                <p className="md:text-[13px] text-[#cbcaca] text-[15px] my-[8px]">Join us for an unforgettable experience at <br /> [Event Name]! Secure your spot now.</p>
+                <div className="text-[14px] text-[#cbcaca] md:mt-0 mt-[14px] flex sm:flex-row flex-col gap-1 text-center"><span>📍 Location: <span className="font-bold text-white">Your Homes</span> </span> <span> || March 15, 2025 | 7:00 PM</span></div>
             </section>
             <span className="hr"></span>
             <section>
                 <p className="text-[#D9D9D9] mb-[10px] text-[14px]">Select Ticket Type:</p>
-                <div className="select-ticket_button bg-[#02191dab] border border-1 border-[#07373F] p-[10px] rounded-[19px] flex md:flex-row flex-col items-center justify-center md:gap-[20px] gap-[10px]">
+                <div className="select-ticket_button bg-[#02191dab] border border-1 border-[#07373F] p-[10px] rounded-[19px] flex md:flex-row flex-col items-center justify-center md:gap-[20px] gap-[20px]">
                     {tickets.map((ticket, i) => {
                         return (
                             <div key={i} className={`${styles.ticketType} ${selectedTicket === ticket.ticket ? styles.selected : ''
@@ -80,7 +80,7 @@ const TicketSelect = ({ onNext, onPrev }: componentProp) => {
                                 onClick={() => handleTicketTypeChange(ticket.ticket)}
                             >
                                 <h3 className="text-[19px] mb-[5px] text-[#FAFAFA] font-semibold m-0">{ticket.type}</h3>
-                                <p className="text-[11px] text-[#D9D9D9] text-nowrap uppercase font-medium m-0">{ticket.access}</p>
+                                <p className="sm:text-[11px] text-[13px] text-[#D9D9D9] text-nowrap uppercase font-medium m-0">{ticket.access}</p>
                                 <span className="text-[11px] text-[#D9D9D9] font-thin">{ticket.count}</span>
                             </div>
                         )
@@ -96,7 +96,7 @@ const TicketSelect = ({ onNext, onPrev }: componentProp) => {
                     onChange={handleTicketCountChange}
                 >
                     {[...Array(10)].map((_, i) => (
-                        <option key={i + 1} value={i + 1}>
+                        <option className="bg-[#05343b] border border-[#05343b]" key={i + 1} value={i + 1}>
                             {i + 1}
                         </option>
                     ))}

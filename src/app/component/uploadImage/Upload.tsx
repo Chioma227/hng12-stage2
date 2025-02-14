@@ -5,12 +5,12 @@ import { useDropzone } from "react-dropzone"
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import Image from "next/image"
 
-interface ImageUploadProps {
+interface uploadProps {
     onImageUpload: (url: string) => void
     value?: string
 }
 
-const Upload = ({ onImageUpload, value }: ImageUploadProps) => {
+const Upload = ({ onImageUpload, value }: uploadProps) => {
     //states
     const [preview, setPreview] = useState<string | null>(value || null)
     const [isUploading, setIsUploading] = useState(false)

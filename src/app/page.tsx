@@ -63,7 +63,7 @@ const Wrapper = () => {
   return (
     <>
       <Header />
-      <main className='flex items-center justify-center'>
+      <main className='mt-[80px] flex items-center justify-center'>
         <div className='box-shadow border border-1 border-[#0E464F] bg-[#041E23] p-[20px] md:rounded-[40px] rounded-[25px] w-[600px]'>
           <header className='flex md:flex-row flex-col md:items-center md:justify-between mb-[9px]'>
             <h2 className={`text-[#FAFAFA] text-[22px]`}>{currentStepTitle}</h2>

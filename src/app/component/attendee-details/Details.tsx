@@ -92,7 +92,7 @@ const Details = ({ onNext, onPrev }: componentProp) => {
                 <div>
                     <Upload
                         onImageUpload={handleImageUpload}
-                        value={formData.imageUrl}
+                        value={formData.imageUrl || ''}
                     />
                     {errors.imageUrl && <span className="text-red-500">{errors.imageUrl}</span>}
                 </div>

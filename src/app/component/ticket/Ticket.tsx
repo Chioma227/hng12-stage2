@@ -5,11 +5,14 @@ import Image from 'next/image'
 import html2canvas from 'html2canvas';
 import React, { useEffect, useState } from 'react'
 
+//component prop
 interface componentProp {
     onReset: () => void;
 }
 
+
 const Ticket = ({ onReset }: componentProp) => {
+    //state
     const [ticketData, setTicketData] = useState({
         ticket: 'Regular',
         ticketCount: 1
@@ -50,10 +53,10 @@ const Ticket = ({ onReset }: componentProp) => {
                 link.click();
                 document.body.removeChild(link);
             } else {
-                console.error("Element with ID 'myDiv' not found.");
+                console.error("Element with ID 'ticket' not found.");
             }
         } catch (error) {
-            console.error('Error downloading div:', error);
+            console.error('Error downloading ticket:', error);
         }
     };
     return (
@@ -72,44 +75,58 @@ const Ticket = ({ onReset }: componentProp) => {
                     <div className="w-8 h-8 absolute  z-50 rounded-full bg-[#041E23] border-2  border-l-0 border-[#24A0B5] --4 -bottom-4 -right-4"></div>
                     <div className="w-8 h-8 absolute  z-50 rounded-full bg-[#041E23] border-2  border-l-0 border-[#24A0B5] --4 -bottom-4 -left-4"></div>
 
-                    <section id='ticket' className='border border-[#24A0B5] md:w-[290px] w-[240px] rounded-[20px] p-[15px] bg-transparent'>
-                        <div className='p-[20px] flex items-center justify-center flex-col'>
+                    <section id='ticket' className='border border-[#24A0B5] md:w-[290px] w-[100%] rounded-[20px] p-[15px] bg-transparent'>
+                        <div className='flex items-center justify-center flex-col'>
                             <div className='flex items-center justify-center flex-col' >
-                                <h2 className="md:text-[25px] text-[19px] font-extrabold text-white text-center text-nowrap">Techember Fest &apos;&apos;25</h2>
-                                <p className='text-white text-[13px]'>📍 04 Rumens road, Ikoyi, Lagos</p>
-                                <p className='text-white text-[13px]'>📅 March 15, 2025 | 7:00 PM</p>
+                                <h2 className="md:text-[25px] text-[27px] leading-10 font-extrabold">Techember Fest &apos;&apos;25</h2>
+                                <div className="text-[14px] text-[#cbcaca] md:mt-0 mt-[14px] flex sm:flex-row flex-col gap-1 text-center"><span>📍 Location: <span className="font-bold text-white">Your Homes</span> </span> <span>📅 March 15, 2025 | 7:00 PM</span></div>
                             </div>
-                            <div className='flex mt-[30px] w-[150px] h-[150px] items-center justify-center'>
-                                <Image src={formData.imageUrl} alt='user' width={120} height={120} className='rounded-[10px] border-3 border-[#21535c] w-full h-full object-cover' />
+                            <div className='flex border-3 border-[#23bad4] mt-[30px] w-[150px] h-[150px] items-center justify-center'>
+                                {formData.imageUrl ? (
+                                    <Image
+                                        src={formData.imageUrl}
+                                        alt="user"
+                                        width={120}
+                                        height={120}
+                                        className="rounded-[10px] border-3 border-[#2ec4de] w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <Image
+                                        src={'/imgPlaceholder.png'}
+                                        alt="user"
+                                        width={120}
+                                        height={120}
+                                        className="rounded-[10px] border-3 border-[#2ec4de] w-full h-full object-cover"
+                                    />
+                                )}
                             </div>
+                            <section className='grid grid-cols-2 p-[5px] mt-[30px] rounded-[20px] border-2 border-[#133D44] bg-[#08343C]'>
+                                <div className=' border-r-2 border-r-[#133D44] border-b-2 border-b-[#133D44] p-[8px]'>
+                                    <p className='text-[#d2cccc92] text-[15px]'>Name</p>
+                                    <p className='text-[#fff] font-medium md:text-[17px] text-[14px] mt-[6px]'>{formData.name}</p>
+                                </div>
+                                <div className='ticket-email border-b-2 border-b-[#133D44] p-[8px]'>
+                                    <p className='text-[#d2cccc92] text-[15px]'>Email</p>
+                                    <p className='text-[#fff] font-medium md:text-[17px] text-[14px] mt-[6px]'>{formData.email}</p>
+                                </div>
+                                <div className='border-r-2 border-r-[#133D44] border-b-2 border-b-[#133D44] p-[8px]'>
+                                    <p className='text-[#d2cccc92] text-[15px]'>Ticket Type:</p>
+                                    <p className='text-[#fff] font-medium md:text-[17px] text-[14px] mt-[6px]'>{ticketData.ticket}</p>
+                                </div>
+                                <div className='border-b-2 border-b-[#133D44] p-[8px]'>
+                                    <p className='text-[#d2cccc92] text-[15px]'>Ticket For:</p>
+                                    <p className='text-[#fff] font-medium md:text-[17px] text-[14px] mt-[6px]'>{ticketData.ticketCount}</p>
+                                </div>
+                                {formData.request && <div className='p-[8px] col-span-2'>
+                                    <p className='text-[#d2cccc92] text-[15px]'>Special Request</p>
+                                    <p className='text-[#fff] md:text-[16px] text-[14px] mt-[6px]'>{formData.request}</p>
+                                </div>}
+                            </section>
                         </div>
-                        <section className='grid grid-cols-2 p-[5px] border-2 border-[#133D44] bg-[#08343C]'>
-                            <div className=' border-r-2 border-r-[#133D44] border-b-2 border-b-[#133D44] p-[8px]'>
-                                <p className='text-[#807f7fa4] text-[15px]'>Name</p>
-                                <p className='text-[#fff] font-bold md:text-[17px] text-[14px] mt-[6px]'>{formData.name}</p>
-                            </div>
-                            <div className='ticket-email border-b-2 border-b-[#133D44] p-[8px]'>
-                                <p className='text-[#807f7fa4] text-[15px]'>Email</p>
-                                <p className='text-[#fff] font-bold md:text-[17px] text-[14px] mt-[6px]'>{formData.email}</p>
-                            </div>
-                            <div className='border-r-2 border-r-[#133D44] border-b-2 border-b-[#133D44] p-[8px]'>
-                                <p className='text-[#807f7fa4] text-[15px]'>Ticket Type:</p>
-                                <p className='text-[#fff] font-bold md:text-[17px] text-[14px] mt-[6px]'>{ticketData.ticket}</p>
-                            </div>
-                            <div className='border-b-2 border-b-[#133D44] p-[8px]'>
-                                <p className='text-[#807f7fa4] text-[15px]'>Ticket For:</p>
-                                <p className='text-[#fff] font-bold md:text-[17px] text-[14px] mt-[6px]'>{ticketData.ticketCount}</p>
-                            </div>
-                            {formData.request && <div className='p-[8px] col-span-2'>
-                                <p className='text-[#807f7fa4] text-[15px]'>Special Request</p>
-                                <p className='text-[#fff] md:text-[16px] text-[14px] mt-[6px]'>{formData.request}</p>
-                            </div>}
-                        </section>
                     </section>
                     <div className="flex gap-1 left-0 bottom-0 absolute bg-[#041E23]  w-full">
-                        {Array.from({ length: 40 }, () => (
-                            // eslint-disable-next-line react/jsx-key
-                            <div className="w-[8px]  relative h-[2px] border-[#24A0B5] border   text-white rounded-full "></div>
+                        {Array.from({ length: 40 }, (_, i) => (
+                            <div key={i} className="w-[8px]  relative h-[2px] border-[#24A0B5] border   text-white rounded-full "></div>
                         ))}
                     </div>
                 </div>
